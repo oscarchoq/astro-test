@@ -1,0 +1,105 @@
+---
+const hero = {
+  eyebrow: "Nuevo · Nimbus 2.0",
+  title: "Lanza tu próximo producto en tiempo récord",
+  subtitle:
+    "Nimbus reúne planificación, desarrollo y despliegue en un solo lugar para que tu equipo pase de la idea a producción sin fricción.",
+  primary: { label: "Empieza gratis", href: "#contacto" },
+  secondary: { label: "Ver características", href: "#caracteristicas" },
+  image: {
+    src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+    alt: "Equipo colaborando alrededor de una mesa con portátiles",
+    width: 1200,
+    height: 800,
+  },
+};
+---
+
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 class="hero__title">{hero.title}</h1>
+      <p class="hero__subtitle">{hero.subtitle}</p>
+      <div class="hero__actions">
+        <a class="btn btn-primary" href={hero.primary.href}>
+          {hero.primary.label}
+        </a>
+        <a class="btn btn-secondary" href={hero.secondary.href}>
+          {hero.secondary.label}
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      <img
+        src={hero.image.src}
+        alt={hero.image.alt}
+        width={hero.image.width}
+        height={hero.image.height}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: radial-gradient(
+        60rem 30rem at 80% -10%,
+        var(--color-brand-soft) 0%,
+        transparent 60%
+      ),
+      var(--color-bg);
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .hero__title {
+    font-size: var(--text-3xl);
+    margin-top: 1rem;
+  }
+
+  .hero__subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-muted);
+    margin-top: 1.25rem;
+    max-width: 34ch;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    margin-top: 2rem;
+  }
+
+  .hero__media img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    object-fit: cover;
+  }
+
+  @media (max-width: 860px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__media {
+      order: -1;
+    }
+
+    .hero__subtitle {
+      max-width: none;
+    }
+  }
+</style>

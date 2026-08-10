@@ -1,0 +1,138 @@
+---
+const brand = {
+  name: "Nimbus",
+  tagline: "La plataforma para lanzar más rápido.",
+};
+
+const footerGroups = [
+  {
+    heading: "Producto",
+    links: [
+      { label: "Características", href: "#caracteristicas" },
+      { label: "Empieza gratis", href: "#contacto" },
+    ],
+  },
+  {
+    heading: "Empresa",
+    links: [
+      { label: "Sobre nosotros", href: "#top" },
+      { label: "Contacto", href: "#contacto" },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
+      { label: "Privacidad", href: "#top" },
+      { label: "Términos", href: "#top" },
+    ],
+  },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a class="brand" href="#top" aria-label={`${brand.name}, inicio`}>
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">{brand.name}</span>
+      </a>
+      <p class="footer__tagline">{brand.tagline}</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Pie de página">
+      {
+        footerGroups.map((group) => (
+          <div class="footer__group">
+            <h3 class="footer__heading">{group.heading}</h3>
+            <ul class="footer__links">
+              {group.links.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </nav>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {year} {brand.name}. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-ink);
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1.4fr 2fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .footer .brand {
+    color: var(--color-inverse);
+  }
+
+  .footer__tagline {
+    margin-top: 0.875rem;
+    max-width: 26ch;
+  }
+
+  .footer__nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .footer__heading {
+    color: var(--color-inverse);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .footer__links {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.625rem;
+  }
+
+  .footer__links a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.15s ease;
+  }
+
+  .footer__links a:hover {
+    color: var(--color-inverse);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-block: 1.5rem;
+    font-size: var(--text-sm);
+  }
+
+  @media (max-width: 720px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .footer__nav {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
